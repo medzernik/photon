@@ -1,370 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Noise reduction.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to noise reduct an image:
- * use photon_rs::conv::noise_reduction;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * noise_reduction(&mut img);
- * ```
- * Adds a constant to a select R, G, or B channel's value.
- */
-export function noise_reduction(photon_image: PhotonImage): void;
-/**
- * Sharpen an image.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to sharpen an image:
- * use photon_rs::conv::sharpen;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * sharpen(&mut img);
- * ```
- * Adds a constant to a select R, G, or B channel's value.
- */
-export function sharpen(photon_image: PhotonImage): void;
-/**
- * Apply edge detection to an image, to create a dark version with its edges highlighted.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to increase the Red channel for all pixels by 10:
- * use photon_rs::conv::edge_detection;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * edge_detection(&mut img);
- * ```
- */
-export function edge_detection(photon_image: PhotonImage): void;
-/**
- * Apply an identity kernel convolution to an image.
- *
- * # Arguments
- * * `img` -A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply an identity kernel convolution:
- * use photon_rs::conv::identity;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * identity(&mut img);
- * ```
- */
-export function identity(photon_image: PhotonImage): void;
-/**
- * Apply a box blur effect.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a box blur effect:
- * use photon_rs::conv::box_blur;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * box_blur(&mut img);
- * ```
- */
-export function box_blur(photon_image: PhotonImage): void;
-/**
- * Gaussian blur in linear time.
- *
- * Reference: http://blog.ivank.net/fastest-gaussian-blur.html
- *
- * # Arguments
- * * `photon_image` - A PhotonImage
- * * `radius` - blur radius
- * # Example
- *
- * ```no_run
- * use photon_rs::conv::gaussian_blur;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * gaussian_blur(&mut img, 3_i32);
- * ```
- */
-export function gaussian_blur(photon_image: PhotonImage, radius: number): void;
-/**
- * Detect horizontal lines in an image, and highlight these only.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to display the horizontal lines in an image:
- * use photon_rs::conv::detect_horizontal_lines;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * detect_horizontal_lines(&mut img);
- * ```
- */
-export function detect_horizontal_lines(photon_image: PhotonImage): void;
-/**
- * Detect vertical lines in an image, and highlight these only.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to display the vertical lines in an image:
- * use photon_rs::conv::detect_vertical_lines;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * detect_vertical_lines(&mut img);
- * ```
- */
-export function detect_vertical_lines(photon_image: PhotonImage): void;
-/**
- * Detect lines at a forty five degree angle in an image, and highlight these only.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to display the lines at a forty five degree angle in an image:
- * use photon_rs::conv::detect_45_deg_lines;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * detect_45_deg_lines(&mut img);
- * ```
- */
-export function detect_45_deg_lines(photon_image: PhotonImage): void;
-/**
- * Detect lines at a 135 degree angle in an image, and highlight these only.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to display the lines at a 135 degree angle in an image:
- * use photon_rs::conv::detect_135_deg_lines;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * detect_135_deg_lines(&mut img);
- * ```
- */
-export function detect_135_deg_lines(photon_image: PhotonImage): void;
-/**
- * Apply a standard laplace convolution.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a laplace effect:
- * use photon_rs::conv::laplace;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * laplace(&mut img);
- * ```
- */
-export function laplace(photon_image: PhotonImage): void;
-/**
- * Preset edge effect.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply this effect:
- * use photon_rs::conv::edge_one;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * edge_one(&mut img);
- * ```
- */
-export function edge_one(photon_image: PhotonImage): void;
-/**
- * Apply an emboss effect to an image.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply an emboss effect:
- * use photon_rs::conv::emboss;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * emboss(&mut img);
- * ```
- */
-export function emboss(photon_image: PhotonImage): void;
-/**
- * Apply a horizontal Sobel filter to an image.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a horizontal Sobel filter:
- * use photon_rs::conv::sobel_horizontal;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * sobel_horizontal(&mut img);
- * ```
- */
-export function sobel_horizontal(photon_image: PhotonImage): void;
-/**
- * Apply a horizontal Prewitt convolution to an image.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a horizontal Prewitt convolution effect:
- * use photon_rs::conv::prewitt_horizontal;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * prewitt_horizontal(&mut img);
- * ```
- */
-export function prewitt_horizontal(photon_image: PhotonImage): void;
-/**
- * Apply a vertical Sobel filter to an image.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a vertical Sobel filter:
- * use photon_rs::conv::sobel_vertical;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * sobel_vertical(&mut img);
- * ```
- */
-export function sobel_vertical(photon_image: PhotonImage): void;
-/**
- * Apply a global Sobel filter to an image
- *
- * Each pixel is calculated as the magnitude of the horizontal and vertical components of the Sobel filter,
- * ie if X is the horizontal sobel and Y is the vertical, for each pixel, we calculate sqrt(X^2 + Y^2)
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a global Sobel filter:
- * use photon_rs::conv::sobel_global;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * sobel_global(&mut img);
- * ```
- */
-export function sobel_global(photon_image: PhotonImage): void;
-/**
- * Add a watermark to an image.
- *
- * # Arguments
- * * `img` - A DynamicImage that contains a view into the image.
- * * `watermark` - The watermark to be placed onto the `img` image.
- * * `x` - The x coordinate where the watermark's top corner should be positioned.
- * * `y` - The y coordinate where the watermark's top corner should be positioned.
- * # Example
- *
- * ```no_run
- * // For example, to add a watermark to an image at x: 30, y: 40:
- * use photon_rs::multiple::watermark;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * let water_mark = open_image("watermark.jpg").expect("File should open");
- * watermark(&mut img, &water_mark, 30_i64, 40_i64);
- * ```
- */
-export function watermark(img: PhotonImage, watermark: PhotonImage, x: bigint, y: bigint): void;
-/**
- * Blend two images together.
- *
- * The `blend_mode` (3rd param) determines which blending mode to use; change this for varying effects.
- * The blend modes available include: `overlay`, `over`, `atop`, `xor`, `plus`, `multiply`, `burn`,
- * `difference`, `soft_light`, `screen`, `hard_light`, `dodge`, `exclusion`, `lighten`, `darken` (more to come)
- * NOTE: The first image must be smaller than the second image passed as params.
- * If the first image were larger than the second, then there would be overflowing pixels which would have no corresponding pixels
- * in the second image.
- * # Arguments
- * * `img` - A DynamicImage that contains a view into the image.
- * * `img2` - The 2nd DynamicImage to be blended with the first.
- * * `blend_mode` - The blending mode to use. See above for complete list of blend modes available.
- * # Example
- *
- * ```no_run
- * // For example, to blend two images with the `multiply` blend mode:
- * use photon_rs::multiple::blend;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * let img2 = open_image("img2.jpg").expect("File should open");
- * blend(&mut img, &img2, "multiply");
- * ```
- */
-export function blend(photon_image: PhotonImage, photon_image2: PhotonImage, blend_mode: string): void;
-export function create_gradient(width: number, height: number): PhotonImage;
-/**
- * Apply a gradient to an image.
- */
-export function apply_gradient(image: PhotonImage): void;
-/**
  * Adds an offset to the image by a certain number of pixels.
  *
  * This creates an RGB shift effect.
@@ -847,296 +483,6 @@ export function add_noise_rand(photon_image: PhotonImage): void;
  * ```
  */
 export function pink_noise(photon_image: PhotonImage): void;
-/**
- * Crop an image.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to crop an image at (0, 0) to (500, 800)
- * use photon_rs::native::{open_image};
- * use photon_rs::transform::crop;
- * use photon_rs::PhotonImage;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * let cropped_img: PhotonImage = crop(&img, 0_u32, 0_u32, 500_u32, 800_u32);
- * // Write the contents of this image in JPG format.
- * ```
- */
-export function crop(photon_image: PhotonImage, x1: number, y1: number, x2: number, y2: number): PhotonImage;
-export function crop_img_browser(source_canvas: HTMLCanvasElement, width: number, height: number, left: number, top: number): HTMLCanvasElement;
-/**
- * Flip an image horizontally.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to flip an image horizontally:
- * use photon_rs::native::open_image;
- * use photon_rs::transform::fliph;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * fliph(&mut img);
- * ```
- */
-export function fliph(photon_image: PhotonImage): void;
-/**
- * Flip an image vertically.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- *
- * # Example
- *
- * ```no_run
- * // For example, to flip an image vertically:
- * use photon_rs::native::open_image;
- * use photon_rs::transform::flipv;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * flipv(&mut img);
- * ```
- */
-export function flipv(photon_image: PhotonImage): void;
-/**
- * Resize an image on the web.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `width` - New width.
- * * `height` - New height.
- * * `sampling_filter` - Nearest = 1, Triangle = 2, CatmullRom = 3, Gaussian = 4, Lanczos3 = 5
- */
-export function resize_img_browser(photon_img: PhotonImage, width: number, height: number, sampling_filter: SamplingFilter): HTMLCanvasElement;
-/**
- * Resize an image.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `width` - New width.
- * * `height` - New height.
- * * `sampling_filter` - Nearest = 1, Triangle = 2, CatmullRom = 3, Gaussian = 4, Lanczos3 = 5
- */
-export function resize(photon_img: PhotonImage, width: number, height: number, sampling_filter: SamplingFilter): PhotonImage;
-/**
- * Resize image using seam carver.
- * Resize only if new dimensions are smaller, than original image.
- * # NOTE: This is still experimental feature, and pretty slow.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `width` - New width.
- * * `height` - New height.
- *
- * # Example
- *
- * ```no_run
- * // For example, resize image using seam carver:
- * use photon_rs::native::open_image;
- * use photon_rs::transform::seam_carve;
- * use photon_rs::PhotonImage;
- *
- * let img = open_image("img.jpg").expect("File should open");
- * let result: PhotonImage = seam_carve(&img, 100_u32, 100_u32);
- * ```
- */
-export function seam_carve(img: PhotonImage, width: number, height: number): PhotonImage;
-/**
- * Shear the image along the X axis.
- * A sheared PhotonImage is returned.
- *
- * # Arguments
- * * `img` - A PhotonImage. See the PhotonImage struct for details.
- * * `shear` - Amount to shear.
- *
- * # Example
- *
- * ```no_run
- * // For example, to shear an image by 0.5:
- * use photon_rs::native::open_image;
- * use photon_rs::transform::shearx;
- *
- * let img = open_image("img.jpg").expect("File should open");
- * let sheared_img = shearx(&img, 0.5);
- * ```
- */
-export function shearx(photon_img: PhotonImage, shear: number): PhotonImage;
-/**
- * Shear the image along the Y axis.
- * A sheared PhotonImage is returned.
- *
- * # Arguments
- * * `img` - A PhotonImage. See the PhotonImage struct for details.
- * * `shear` - Amount to shear.
- *
- * # Example
- *
- * ```no_run
- * // For example, to shear an image by 0.5:
- * use photon_rs::native::open_image;
- * use photon_rs::transform::sheary;
- *
- * let img = open_image("img.jpg").expect("File should open");
- * let sheared_img = sheary(&img, 0.5);
- * ```
- */
-export function sheary(photon_img: PhotonImage, shear: number): PhotonImage;
-/**
- * Apply uniform padding around the PhotonImage
- * A padded PhotonImage is returned.
- * # Arguments
- * * `img` - A PhotonImage. See the PhotonImage struct for details.
- * * `padding` - The amount of padding to be applied to the PhotonImage.
- * * `padding_rgba` - Tuple containing the RGBA code for padding color.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a padding of 10 pixels around a PhotonImage:
- * use photon_rs::transform::padding_uniform;
- * use photon_rs::native::open_image;
- * use photon_rs::Rgba;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * let rgba = Rgba::new(200_u8, 100_u8, 150_u8, 255_u8);
- * padding_uniform(&img, 10_u32, rgba);
- * ```
- */
-export function padding_uniform(img: PhotonImage, padding: number, padding_rgba: Rgba): PhotonImage;
-/**
- * Apply padding on the left side of the PhotonImage
- * A padded PhotonImage is returned.
- * # Arguments
- * * `img` - A PhotonImage. See the PhotonImage struct for details.
- * * `padding` - The amount of padding to be applied to the PhotonImage.
- * * `padding_rgba` - Tuple containing the RGBA code for padding color.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a padding of 10 pixels on the left side of a PhotonImage:
- * use photon_rs::transform::padding_left;
- * use photon_rs::native::open_image;
- * use photon_rs::Rgba;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * let rgba = Rgba::new(200_u8, 100_u8, 150_u8, 255_u8);
- * padding_left(&img, 10_u32, rgba);
- * ```
- */
-export function padding_left(img: PhotonImage, padding: number, padding_rgba: Rgba): PhotonImage;
-/**
- * Apply padding on the left side of the PhotonImage
- * A padded PhotonImage is returned.
- * # Arguments
- * * `img` - A PhotonImage. See the PhotonImage struct for details.
- * * `padding` - The amount of padding to be applied to the PhotonImage.
- * * `padding_rgba` - Tuple containing the RGBA code for padding color.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a padding of 10 pixels on the right side of a PhotonImage:
- * use photon_rs::transform::padding_right;
- * use photon_rs::native::open_image;
- * use photon_rs::Rgba;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * let rgba = Rgba::new(200_u8, 100_u8, 150_u8, 255_u8);
- * padding_right(&img, 10_u32, rgba);
- * ```
- */
-export function padding_right(img: PhotonImage, padding: number, padding_rgba: Rgba): PhotonImage;
-/**
- * Apply padding on the left side of the PhotonImage
- * A padded PhotonImage is returned.
- * # Arguments
- * * `img` - A PhotonImage. See the PhotonImage struct for details.
- * * `padding` - The amount of padding to be applied to the PhotonImage.
- * * `padding_rgba` - Tuple containing the RGBA code for padding color.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a padding of 10 pixels on the top of a PhotonImage:
- * use photon_rs::transform::padding_top;
- * use photon_rs::native::open_image;
- * use photon_rs::Rgba;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * let rgba = Rgba::new(200_u8, 100_u8, 150_u8, 255_u8);
- * padding_top(&img, 10_u32, rgba);
- * ```
- */
-export function padding_top(img: PhotonImage, padding: number, padding_rgba: Rgba): PhotonImage;
-/**
- * Apply padding on the left side of the PhotonImage
- * A padded PhotonImage is returned.
- * # Arguments
- * * `img` - A PhotonImage. See the PhotonImage struct for details.
- * * `padding` - The amount of padding to be applied to the PhotonImage.
- * * `padding_rgba` - Tuple containing the RGBA code for padding color.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a padding of 10 pixels on the bottom of a PhotonImage:
- * use photon_rs::transform::padding_bottom;
- * use photon_rs::native::open_image;
- * use photon_rs::Rgba;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * let rgba = Rgba::new(200_u8, 100_u8, 150_u8, 255_u8);
- * padding_bottom(&img, 10_u32, rgba);
- * ```
- */
-export function padding_bottom(img: PhotonImage, padding: number, padding_rgba: Rgba): PhotonImage;
-/**
- * Rotate the PhotonImage on an arbitrary angle
- * A rotated PhotonImage is returned.
- *
- * # Arguments
- * * `img` - A PhotonImage. See the PhotonImage struct for details.
- * * `angle` - Rotation angle in degrees.
- *
- * # Example
- *
- * ```no_run
- * // For example, to rotate a PhotonImage by 30 degrees:
- * use photon_rs::native::open_image;
- * use photon_rs::transform::rotate;
- *
- * let img = open_image("img.jpg").expect("File should open");
- * let rotated_img = rotate(&img, 30.0);
- * ```
- */
-export function rotate(photon_img: PhotonImage, angle: number): PhotonImage;
-/**
- * Resample the PhotonImage.
- *
- * # Arguments
- * * `img` - A PhotonImage. See the PhotonImage struct for details.
- * * `dst_width` - Target width.
- * * `dst_height` - Target height.
- *
- * # Example
- *
- * ```no_run
- * // For example, to resample a PhotonImage to 1920x1080 size:
- * use photon_rs::native::open_image;
- * use photon_rs::transform::resample;
- *
- * let img = open_image("img.jpg").expect("File should open");
- * let rotated_img = resample(&img, 1920, 1080);
- * ```
- */
-export function resample(img: PhotonImage, dst_width: number, dst_height: number): PhotonImage;
 /**
  * Applies gamma correction to an image.
  * # Arguments
@@ -1966,300 +1312,694 @@ export function draw_text_with_border(photon_img: PhotonImage, text: string, x: 
  */
 export function draw_text(photon_img: PhotonImage, text: string, x: number, y: number): void;
 /**
- * Solarization on the Blue channel.
+ * Noise reduction.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::neue;
+ * // For example, to noise reduct an image:
+ * use photon_rs::conv::noise_reduction;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * neue(&mut img);
+ * noise_reduction(&mut img);
  * ```
+ * Adds a constant to a select R, G, or B channel's value.
  */
-export function neue(photon_image: PhotonImage): void;
+export function noise_reduction(photon_image: PhotonImage): void;
 /**
- * Solarization on the Red and Green channels.
+ * Sharpen an image.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::lix;
+ * // For example, to sharpen an image:
+ * use photon_rs::conv::sharpen;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * lix(&mut img);
+ * sharpen(&mut img);
  * ```
+ * Adds a constant to a select R, G, or B channel's value.
  */
-export function lix(photon_image: PhotonImage): void;
+export function sharpen(photon_image: PhotonImage): void;
 /**
- * Solarization on the Red and Blue channels.
+ * Apply edge detection to an image, to create a dark version with its edges highlighted.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::ryo;
+ * // For example, to increase the Red channel for all pixels by 10:
+ * use photon_rs::conv::edge_detection;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * ryo(&mut img);
+ * edge_detection(&mut img);
  * ```
  */
-export function ryo(photon_image: PhotonImage): void;
+export function edge_detection(photon_image: PhotonImage): void;
 /**
- * Apply a filter to an image. Over 20 filters are available.
- * The filters are as follows:
- * * **oceanic**: Add an aquamarine-tinted hue to an image.
- * * **islands**: Aquamarine tint.
- * * **marine**: Add a green/blue mixed hue to an image.
- * * **seagreen**: Dark green hue, with tones of blue.
- * * **flagblue**: Royal blue tint
- * * **liquid**: Blue-inspired tint.
- * * **diamante**: Custom filter with a blue/turquoise tint.
- * * **radio**: Fallout-style radio effect.
- * * **twenties**: Slight-blue tinted historical effect.
- * * **rosetint**: Rose-tinted filter.
- * * **mauve**: Purple-infused filter.
- * * **bluechrome**: Blue monochrome effect.
- * * **vintage**: Vintage filter with a red tint.
- * * **perfume**: Increase the blue channel, with moderate increases in the Red and Green channels.
- * * **serenity**: Custom filter with an increase in the Blue channel's values.
+ * Apply an identity kernel convolution to an image.
+ *
  * # Arguments
- * * `img` - A PhotonImage.
- * * `filter_name` - The filter's name. Choose from the selection above, eg: "oceanic"
+ * * `img` -A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * // For example, to add a filter called "vintage" to an image:
- * use photon_rs::filters::filter;
+ * // For example, to apply an identity kernel convolution:
+ * use photon_rs::conv::identity;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * filter(&mut img, "vintage");
+ * identity(&mut img);
  * ```
  */
-export function filter(img: PhotonImage, filter_name: string): void;
+export function identity(photon_image: PhotonImage): void;
 /**
- * Apply a lofi effect to an image.
+ * Apply a box blur effect.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::lofi;
+ * // For example, to apply a box blur effect:
+ * use photon_rs::conv::box_blur;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * lofi(&mut img);
+ * box_blur(&mut img);
  * ```
  */
-export function lofi(img: PhotonImage): void;
+export function box_blur(photon_image: PhotonImage): void;
 /**
- * Apply a rose tint to an image.
+ * Gaussian blur in linear time.
+ *
+ * Reference: http://blog.ivank.net/fastest-gaussian-blur.html
  *
  * # Arguments
- * * `img` - A PhotonImage.
+ * * `photon_image` - A PhotonImage
+ * * `radius` - blur radius
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::pastel_pink;
+ * use photon_rs::conv::gaussian_blur;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * pastel_pink(&mut img);
+ * gaussian_blur(&mut img, 3_i32);
  * ```
  */
-export function pastel_pink(img: PhotonImage): void;
+export function gaussian_blur(photon_image: PhotonImage, radius: number): void;
 /**
- * Apply a vintage, golden hue to an image.
+ * Detect horizontal lines in an image, and highlight these only.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::golden;
+ * // For example, to display the horizontal lines in an image:
+ * use photon_rs::conv::detect_horizontal_lines;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * golden(&mut img);
+ * detect_horizontal_lines(&mut img);
  * ```
  */
-export function golden(img: PhotonImage): void;
+export function detect_horizontal_lines(photon_image: PhotonImage): void;
 /**
- * Increased contrast filter effect.
+ * Detect vertical lines in an image, and highlight these only.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::cali;
+ * // For example, to display the vertical lines in an image:
+ * use photon_rs::conv::detect_vertical_lines;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * cali(&mut img);
+ * detect_vertical_lines(&mut img);
  * ```
  */
-export function cali(img: PhotonImage): void;
+export function detect_vertical_lines(photon_image: PhotonImage): void;
 /**
- * Greyscale effect with increased contrast.
+ * Detect lines at a forty five degree angle in an image, and highlight these only.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::dramatic;
+ * // For example, to display the lines at a forty five degree angle in an image:
+ * use photon_rs::conv::detect_45_deg_lines;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * dramatic(&mut img);
+ * detect_45_deg_lines(&mut img);
  * ```
  */
-export function dramatic(img: PhotonImage): void;
+export function detect_45_deg_lines(photon_image: PhotonImage): void;
 /**
- * Monochrome tint effect with increased contrast
+ * Detect lines at a 135 degree angle in an image, and highlight these only.
  *
  * # Arguments
  * * `img` - A PhotonImage.
- * * `rgb_color` - RGB color
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::monochrome_tint;
+ * // For example, to display the lines at a 135 degree angle in an image:
+ * use photon_rs::conv::detect_135_deg_lines;
  * use photon_rs::native::open_image;
- * use photon_rs::Rgb;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * let rgb_color = Rgb::new(12, 12, 10);
- * monochrome_tint(&mut img, rgb_color);
+ * detect_135_deg_lines(&mut img);
  * ```
  */
-export function monochrome_tint(img: PhotonImage, rgb_color: Rgb): void;
+export function detect_135_deg_lines(photon_image: PhotonImage): void;
 /**
- * Duotone effect with blue and purple tones.
+ * Apply a standard laplace convolution.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::duotone_violette;
+ * // For example, to apply a laplace effect:
+ * use photon_rs::conv::laplace;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * duotone_violette(&mut img);
+ * laplace(&mut img);
  * ```
  */
-export function duotone_violette(img: PhotonImage): void;
+export function laplace(photon_image: PhotonImage): void;
 /**
- * Duotone effect with purple tones.
+ * Preset edge effect.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::duotone_horizon;
+ * // For example, to apply this effect:
+ * use photon_rs::conv::edge_one;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * duotone_horizon(&mut img);
+ * edge_one(&mut img);
  * ```
  */
-export function duotone_horizon(img: PhotonImage): void;
+export function edge_one(photon_image: PhotonImage): void;
 /**
- * A duotone filter with a user-specified color and a gray color
+ * Apply an emboss effect to an image.
  *
  * # Arguments
  * * `img` - A PhotonImage.
- * * `rgb_color` - RGB color
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::duotone_tint;
+ * // For example, to apply an emboss effect:
+ * use photon_rs::conv::emboss;
  * use photon_rs::native::open_image;
- * use photon_rs::Rgb;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * let rgb_color = Rgb::new(12, 12, 10);
- * duotone_tint(&mut img, rgb_color);
+ * emboss(&mut img);
  * ```
  */
-export function duotone_tint(img: PhotonImage, rgb_color: Rgb): void;
+export function emboss(photon_image: PhotonImage): void;
 /**
- * Duotone effect with a lilac hue
+ * Apply a horizontal Sobel filter to an image.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::duotone_lilac;
+ * // For example, to apply a horizontal Sobel filter:
+ * use photon_rs::conv::sobel_horizontal;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * duotone_lilac(&mut img);
+ * sobel_horizontal(&mut img);
  * ```
  */
-export function duotone_lilac(img: PhotonImage): void;
+export function sobel_horizontal(photon_image: PhotonImage): void;
 /**
- * A duotone ochre tint effect
+ * Apply a horizontal Prewitt convolution to an image.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::duotone_ochre;
+ * // For example, to apply a horizontal Prewitt convolution effect:
+ * use photon_rs::conv::prewitt_horizontal;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * duotone_ochre(&mut img);
+ * prewitt_horizontal(&mut img);
  * ```
  */
-export function duotone_ochre(img: PhotonImage): void;
+export function prewitt_horizontal(photon_image: PhotonImage): void;
 /**
- * Apply a red hue, with increased contrast and brightness.
+ * Apply a vertical Sobel filter to an image.
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::firenze;
+ * // For example, to apply a vertical Sobel filter:
+ * use photon_rs::conv::sobel_vertical;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * firenze(&mut img);
+ * sobel_vertical(&mut img);
  * ```
  */
-export function firenze(img: PhotonImage): void;
+export function sobel_vertical(photon_image: PhotonImage): void;
 /**
- * Apply a greyscale effect with increased contrast.
+ * Apply a global Sobel filter to an image
+ *
+ * Each pixel is calculated as the magnitude of the horizontal and vertical components of the Sobel filter,
+ * ie if X is the horizontal sobel and Y is the vertical, for each pixel, we calculate sqrt(X^2 + Y^2)
  *
  * # Arguments
  * * `img` - A PhotonImage.
+ *
  * # Example
  *
  * ```no_run
- * use photon_rs::filters::obsidian;
+ * // For example, to apply a global Sobel filter:
+ * use photon_rs::conv::sobel_global;
  * use photon_rs::native::open_image;
  *
  * let mut img = open_image("img.jpg").expect("File should open");
- * obsidian(&mut img);
+ * sobel_global(&mut img);
  * ```
  */
-export function obsidian(img: PhotonImage): void;
+export function sobel_global(photon_image: PhotonImage): void;
+/**
+ * Add a watermark to an image.
+ *
+ * # Arguments
+ * * `img` - A DynamicImage that contains a view into the image.
+ * * `watermark` - The watermark to be placed onto the `img` image.
+ * * `x` - The x coordinate where the watermark's top corner should be positioned.
+ * * `y` - The y coordinate where the watermark's top corner should be positioned.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to add a watermark to an image at x: 30, y: 40:
+ * use photon_rs::multiple::watermark;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * let water_mark = open_image("watermark.jpg").expect("File should open");
+ * watermark(&mut img, &water_mark, 30_i64, 40_i64);
+ * ```
+ */
+export function watermark(img: PhotonImage, watermark: PhotonImage, x: bigint, y: bigint): void;
+/**
+ * Blend two images together.
+ *
+ * The `blend_mode` (3rd param) determines which blending mode to use; change this for varying effects.
+ * The blend modes available include: `overlay`, `over`, `atop`, `xor`, `plus`, `multiply`, `burn`,
+ * `difference`, `soft_light`, `screen`, `hard_light`, `dodge`, `exclusion`, `lighten`, `darken` (more to come)
+ * NOTE: The first image must be smaller than the second image passed as params.
+ * If the first image were larger than the second, then there would be overflowing pixels which would have no corresponding pixels
+ * in the second image.
+ * # Arguments
+ * * `img` - A DynamicImage that contains a view into the image.
+ * * `img2` - The 2nd DynamicImage to be blended with the first.
+ * * `blend_mode` - The blending mode to use. See above for complete list of blend modes available.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to blend two images with the `multiply` blend mode:
+ * use photon_rs::multiple::blend;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * let img2 = open_image("img2.jpg").expect("File should open");
+ * blend(&mut img, &img2, "multiply");
+ * ```
+ */
+export function blend(photon_image: PhotonImage, photon_image2: PhotonImage, blend_mode: string): void;
+export function create_gradient(width: number, height: number): PhotonImage;
+/**
+ * Apply a gradient to an image.
+ */
+export function apply_gradient(image: PhotonImage): void;
+/**
+ * Crop an image.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to crop an image at (0, 0) to (500, 800)
+ * use photon_rs::native::{open_image};
+ * use photon_rs::transform::crop;
+ * use photon_rs::PhotonImage;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * let cropped_img: PhotonImage = crop(&img, 0_u32, 0_u32, 500_u32, 800_u32);
+ * // Write the contents of this image in JPG format.
+ * ```
+ */
+export function crop(photon_image: PhotonImage, x1: number, y1: number, x2: number, y2: number): PhotonImage;
+export function crop_img_browser(source_canvas: HTMLCanvasElement, width: number, height: number, left: number, top: number): HTMLCanvasElement;
+/**
+ * Flip an image horizontally.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to flip an image horizontally:
+ * use photon_rs::native::open_image;
+ * use photon_rs::transform::fliph;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * fliph(&mut img);
+ * ```
+ */
+export function fliph(photon_image: PhotonImage): void;
+/**
+ * Flip an image vertically.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to flip an image vertically:
+ * use photon_rs::native::open_image;
+ * use photon_rs::transform::flipv;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * flipv(&mut img);
+ * ```
+ */
+export function flipv(photon_image: PhotonImage): void;
+/**
+ * Resize an image on the web.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `width` - New width.
+ * * `height` - New height.
+ * * `sampling_filter` - Nearest = 1, Triangle = 2, CatmullRom = 3, Gaussian = 4, Lanczos3 = 5
+ */
+export function resize_img_browser(photon_img: PhotonImage, width: number, height: number, sampling_filter: SamplingFilter): HTMLCanvasElement;
+/**
+ * Resize an image.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `width` - New width.
+ * * `height` - New height.
+ * * `sampling_filter` - Nearest = 1, Triangle = 2, CatmullRom = 3, Gaussian = 4, Lanczos3 = 5
+ */
+export function resize(photon_img: PhotonImage, width: number, height: number, sampling_filter: SamplingFilter): PhotonImage;
+/**
+ * Resize image using seam carver.
+ * Resize only if new dimensions are smaller, than original image.
+ * # NOTE: This is still experimental feature, and pretty slow.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `width` - New width.
+ * * `height` - New height.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, resize image using seam carver:
+ * use photon_rs::native::open_image;
+ * use photon_rs::transform::seam_carve;
+ * use photon_rs::PhotonImage;
+ *
+ * let img = open_image("img.jpg").expect("File should open");
+ * let result: PhotonImage = seam_carve(&img, 100_u32, 100_u32);
+ * ```
+ */
+export function seam_carve(img: PhotonImage, width: number, height: number): PhotonImage;
+/**
+ * Shear the image along the X axis.
+ * A sheared PhotonImage is returned.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage. See the PhotonImage struct for details.
+ * * `shear` - Amount to shear.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to shear an image by 0.5:
+ * use photon_rs::native::open_image;
+ * use photon_rs::transform::shearx;
+ *
+ * let img = open_image("img.jpg").expect("File should open");
+ * let sheared_img = shearx(&img, 0.5);
+ * ```
+ */
+export function shearx(photon_img: PhotonImage, shear: number): PhotonImage;
+/**
+ * Shear the image along the Y axis.
+ * A sheared PhotonImage is returned.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage. See the PhotonImage struct for details.
+ * * `shear` - Amount to shear.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to shear an image by 0.5:
+ * use photon_rs::native::open_image;
+ * use photon_rs::transform::sheary;
+ *
+ * let img = open_image("img.jpg").expect("File should open");
+ * let sheared_img = sheary(&img, 0.5);
+ * ```
+ */
+export function sheary(photon_img: PhotonImage, shear: number): PhotonImage;
+/**
+ * Apply uniform padding around the PhotonImage
+ * A padded PhotonImage is returned.
+ * # Arguments
+ * * `img` - A PhotonImage. See the PhotonImage struct for details.
+ * * `padding` - The amount of padding to be applied to the PhotonImage.
+ * * `padding_rgba` - Tuple containing the RGBA code for padding color.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to apply a padding of 10 pixels around a PhotonImage:
+ * use photon_rs::transform::padding_uniform;
+ * use photon_rs::native::open_image;
+ * use photon_rs::Rgba;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * let rgba = Rgba::new(200_u8, 100_u8, 150_u8, 255_u8);
+ * padding_uniform(&img, 10_u32, rgba);
+ * ```
+ */
+export function padding_uniform(img: PhotonImage, padding: number, padding_rgba: Rgba): PhotonImage;
+/**
+ * Apply padding on the left side of the PhotonImage
+ * A padded PhotonImage is returned.
+ * # Arguments
+ * * `img` - A PhotonImage. See the PhotonImage struct for details.
+ * * `padding` - The amount of padding to be applied to the PhotonImage.
+ * * `padding_rgba` - Tuple containing the RGBA code for padding color.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to apply a padding of 10 pixels on the left side of a PhotonImage:
+ * use photon_rs::transform::padding_left;
+ * use photon_rs::native::open_image;
+ * use photon_rs::Rgba;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * let rgba = Rgba::new(200_u8, 100_u8, 150_u8, 255_u8);
+ * padding_left(&img, 10_u32, rgba);
+ * ```
+ */
+export function padding_left(img: PhotonImage, padding: number, padding_rgba: Rgba): PhotonImage;
+/**
+ * Apply padding on the left side of the PhotonImage
+ * A padded PhotonImage is returned.
+ * # Arguments
+ * * `img` - A PhotonImage. See the PhotonImage struct for details.
+ * * `padding` - The amount of padding to be applied to the PhotonImage.
+ * * `padding_rgba` - Tuple containing the RGBA code for padding color.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to apply a padding of 10 pixels on the right side of a PhotonImage:
+ * use photon_rs::transform::padding_right;
+ * use photon_rs::native::open_image;
+ * use photon_rs::Rgba;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * let rgba = Rgba::new(200_u8, 100_u8, 150_u8, 255_u8);
+ * padding_right(&img, 10_u32, rgba);
+ * ```
+ */
+export function padding_right(img: PhotonImage, padding: number, padding_rgba: Rgba): PhotonImage;
+/**
+ * Apply padding on the left side of the PhotonImage
+ * A padded PhotonImage is returned.
+ * # Arguments
+ * * `img` - A PhotonImage. See the PhotonImage struct for details.
+ * * `padding` - The amount of padding to be applied to the PhotonImage.
+ * * `padding_rgba` - Tuple containing the RGBA code for padding color.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to apply a padding of 10 pixels on the top of a PhotonImage:
+ * use photon_rs::transform::padding_top;
+ * use photon_rs::native::open_image;
+ * use photon_rs::Rgba;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * let rgba = Rgba::new(200_u8, 100_u8, 150_u8, 255_u8);
+ * padding_top(&img, 10_u32, rgba);
+ * ```
+ */
+export function padding_top(img: PhotonImage, padding: number, padding_rgba: Rgba): PhotonImage;
+/**
+ * Apply padding on the left side of the PhotonImage
+ * A padded PhotonImage is returned.
+ * # Arguments
+ * * `img` - A PhotonImage. See the PhotonImage struct for details.
+ * * `padding` - The amount of padding to be applied to the PhotonImage.
+ * * `padding_rgba` - Tuple containing the RGBA code for padding color.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to apply a padding of 10 pixels on the bottom of a PhotonImage:
+ * use photon_rs::transform::padding_bottom;
+ * use photon_rs::native::open_image;
+ * use photon_rs::Rgba;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * let rgba = Rgba::new(200_u8, 100_u8, 150_u8, 255_u8);
+ * padding_bottom(&img, 10_u32, rgba);
+ * ```
+ */
+export function padding_bottom(img: PhotonImage, padding: number, padding_rgba: Rgba): PhotonImage;
+/**
+ * Rotate the PhotonImage on an arbitrary angle
+ * A rotated PhotonImage is returned.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage. See the PhotonImage struct for details.
+ * * `angle` - Rotation angle in degrees.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to rotate a PhotonImage by 30 degrees:
+ * use photon_rs::native::open_image;
+ * use photon_rs::transform::rotate;
+ *
+ * let img = open_image("img.jpg").expect("File should open");
+ * let rotated_img = rotate(&img, 30.0);
+ * ```
+ */
+export function rotate(photon_img: PhotonImage, angle: number): PhotonImage;
+/**
+ * Resample the PhotonImage.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage. See the PhotonImage struct for details.
+ * * `dst_width` - Target width.
+ * * `dst_height` - Target height.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to resample a PhotonImage to 1920x1080 size:
+ * use photon_rs::native::open_image;
+ * use photon_rs::transform::resample;
+ *
+ * let img = open_image("img.jpg").expect("File should open");
+ * let rotated_img = resample(&img, 1920, 1080);
+ * ```
+ */
+export function resample(img: PhotonImage, dst_width: number, dst_height: number): PhotonImage;
+/**
+ * ! [temp] Check if WASM is supported.
+ */
+export function run(): void;
+/**
+ * Get the ImageData from a 2D canvas context
+ */
+export function get_image_data(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): ImageData;
+/**
+ * Place a PhotonImage onto a 2D canvas.
+ */
+export function putImageData(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, new_image: PhotonImage): void;
+/**
+ * Convert a HTML5 Canvas Element to a PhotonImage.
+ *
+ * This converts the ImageData found in the canvas context to a PhotonImage,
+ * which can then have effects or filters applied to it.
+ */
+export function open_image(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): PhotonImage;
+/**
+ * Convert ImageData to a raw pixel vec of u8s.
+ */
+export function to_raw_pixels(imgdata: ImageData): Uint8Array;
+/**
+ * Convert a base64 string to a PhotonImage.
+ */
+export function base64_to_image(base64: string): PhotonImage;
+/**
+ * Convert a base64 string to a Vec of u8s.
+ */
+export function base64_to_vec(base64: string): Uint8Array;
+/**
+ * Convert a PhotonImage to JS-compatible ImageData.
+ */
+export function to_image_data(photon_image: PhotonImage): ImageData;
 /**
  * Alter a select channel by incrementing or decrementing its value by a constant.
  *
@@ -2663,40 +2403,300 @@ export function selective_saturate(img: PhotonImage, ref_color: Rgb, amt: number
  */
 export function selective_greyscale(photon_image: PhotonImage, ref_color: Rgb): void;
 /**
- * ! [temp] Check if WASM is supported.
- */
-export function run(): void;
-/**
- * Get the ImageData from a 2D canvas context
- */
-export function get_image_data(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): ImageData;
-/**
- * Place a PhotonImage onto a 2D canvas.
- */
-export function putImageData(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, new_image: PhotonImage): void;
-/**
- * Convert a HTML5 Canvas Element to a PhotonImage.
+ * Solarization on the Blue channel.
  *
- * This converts the ImageData found in the canvas context to a PhotonImage,
- * which can then have effects or filters applied to it.
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::neue;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * neue(&mut img);
+ * ```
  */
-export function open_image(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): PhotonImage;
+export function neue(photon_image: PhotonImage): void;
 /**
- * Convert ImageData to a raw pixel vec of u8s.
+ * Solarization on the Red and Green channels.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::lix;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * lix(&mut img);
+ * ```
  */
-export function to_raw_pixels(imgdata: ImageData): Uint8Array;
+export function lix(photon_image: PhotonImage): void;
 /**
- * Convert a base64 string to a PhotonImage.
+ * Solarization on the Red and Blue channels.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::ryo;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * ryo(&mut img);
+ * ```
  */
-export function base64_to_image(base64: string): PhotonImage;
+export function ryo(photon_image: PhotonImage): void;
 /**
- * Convert a base64 string to a Vec of u8s.
+ * Apply a filter to an image. Over 20 filters are available.
+ * The filters are as follows:
+ * * **oceanic**: Add an aquamarine-tinted hue to an image.
+ * * **islands**: Aquamarine tint.
+ * * **marine**: Add a green/blue mixed hue to an image.
+ * * **seagreen**: Dark green hue, with tones of blue.
+ * * **flagblue**: Royal blue tint
+ * * **liquid**: Blue-inspired tint.
+ * * **diamante**: Custom filter with a blue/turquoise tint.
+ * * **radio**: Fallout-style radio effect.
+ * * **twenties**: Slight-blue tinted historical effect.
+ * * **rosetint**: Rose-tinted filter.
+ * * **mauve**: Purple-infused filter.
+ * * **bluechrome**: Blue monochrome effect.
+ * * **vintage**: Vintage filter with a red tint.
+ * * **perfume**: Increase the blue channel, with moderate increases in the Red and Green channels.
+ * * **serenity**: Custom filter with an increase in the Blue channel's values.
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `filter_name` - The filter's name. Choose from the selection above, eg: "oceanic"
+ * # Example
+ *
+ * ```no_run
+ * // For example, to add a filter called "vintage" to an image:
+ * use photon_rs::filters::filter;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * filter(&mut img, "vintage");
+ * ```
  */
-export function base64_to_vec(base64: string): Uint8Array;
+export function filter(img: PhotonImage, filter_name: string): void;
 /**
- * Convert a PhotonImage to JS-compatible ImageData.
+ * Apply a lofi effect to an image.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::lofi;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * lofi(&mut img);
+ * ```
  */
-export function to_image_data(photon_image: PhotonImage): ImageData;
+export function lofi(img: PhotonImage): void;
+/**
+ * Apply a rose tint to an image.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::pastel_pink;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * pastel_pink(&mut img);
+ * ```
+ */
+export function pastel_pink(img: PhotonImage): void;
+/**
+ * Apply a vintage, golden hue to an image.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::golden;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * golden(&mut img);
+ * ```
+ */
+export function golden(img: PhotonImage): void;
+/**
+ * Increased contrast filter effect.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::cali;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * cali(&mut img);
+ * ```
+ */
+export function cali(img: PhotonImage): void;
+/**
+ * Greyscale effect with increased contrast.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::dramatic;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * dramatic(&mut img);
+ * ```
+ */
+export function dramatic(img: PhotonImage): void;
+/**
+ * Monochrome tint effect with increased contrast
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `rgb_color` - RGB color
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::monochrome_tint;
+ * use photon_rs::native::open_image;
+ * use photon_rs::Rgb;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * let rgb_color = Rgb::new(12, 12, 10);
+ * monochrome_tint(&mut img, rgb_color);
+ * ```
+ */
+export function monochrome_tint(img: PhotonImage, rgb_color: Rgb): void;
+/**
+ * Duotone effect with blue and purple tones.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::duotone_violette;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * duotone_violette(&mut img);
+ * ```
+ */
+export function duotone_violette(img: PhotonImage): void;
+/**
+ * Duotone effect with purple tones.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::duotone_horizon;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * duotone_horizon(&mut img);
+ * ```
+ */
+export function duotone_horizon(img: PhotonImage): void;
+/**
+ * A duotone filter with a user-specified color and a gray color
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `rgb_color` - RGB color
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::duotone_tint;
+ * use photon_rs::native::open_image;
+ * use photon_rs::Rgb;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * let rgb_color = Rgb::new(12, 12, 10);
+ * duotone_tint(&mut img, rgb_color);
+ * ```
+ */
+export function duotone_tint(img: PhotonImage, rgb_color: Rgb): void;
+/**
+ * Duotone effect with a lilac hue
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::duotone_lilac;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * duotone_lilac(&mut img);
+ * ```
+ */
+export function duotone_lilac(img: PhotonImage): void;
+/**
+ * A duotone ochre tint effect
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::duotone_ochre;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * duotone_ochre(&mut img);
+ * ```
+ */
+export function duotone_ochre(img: PhotonImage): void;
+/**
+ * Apply a red hue, with increased contrast and brightness.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::firenze;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * firenze(&mut img);
+ * ```
+ */
+export function firenze(img: PhotonImage): void;
+/**
+ * Apply a greyscale effect with increased contrast.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::filters::obsidian;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * obsidian(&mut img);
+ * ```
+ */
+export function obsidian(img: PhotonImage): void;
 export enum SamplingFilter {
   Nearest = 1,
   Triangle = 2,
