@@ -180,7 +180,7 @@ impl PhotonImage {
         img = ImageRgba8(img.to_rgba8());
 
         let mut buffer = vec![];
-        img.write_to(&mut Cursor::new(&mut buffer), image::ImageOutputFormat::Png)
+        img.write_to(&mut Cursor::new(&mut buffer), image::ImageFormat::Png)
             .unwrap();
         let base64 = encode(&buffer);
 
@@ -194,7 +194,7 @@ impl PhotonImage {
         let mut img = helpers::dyn_image_from_raw(self);
         img = ImageRgba8(img.to_rgba8());
         let mut buffer = vec![];
-        img.write_to(&mut Cursor::new(&mut buffer), image::ImageOutputFormat::Png)
+        img.write_to(&mut Cursor::new(&mut buffer), image::ImageFormat::Png)
             .unwrap();
         buffer
     }
@@ -204,7 +204,8 @@ impl PhotonImage {
         let mut img = helpers::dyn_image_from_raw(self);
         img = ImageRgba8(img.to_rgba8());
         let mut buffer = vec![];
-        let out_format = image::ImageOutputFormat::Jpeg(quality);
+        let out_format = image::ImageFormat::Jpeg;
+
         img.write_to(&mut Cursor::new(&mut buffer), out_format)
             .unwrap();
         buffer
@@ -215,7 +216,7 @@ impl PhotonImage {
         let mut img = helpers::dyn_image_from_raw(self);
         img = ImageRgba8(img.to_rgba8());
         let mut buffer = vec![];
-        let out_format = image::ImageOutputFormat::WebP;
+        let out_format = image::ImageFormat::WebP;
         img.write_to(&mut Cursor::new(&mut buffer), out_format)
             .unwrap();
         buffer
