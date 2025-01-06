@@ -5,9 +5,10 @@ use crate::iter::ImageIterator;
 use crate::{helpers, GenericImage, PhotonImage, Rgb};
 use image::DynamicImage::ImageRgba8;
 use image::Pixel as ImagePixel;
-use image::{DynamicImage, GenericImageView, RgbaImage};
-use palette::{Blend, Gradient, Lab, Lch, LinSrgba, Srgb, Srgba};
-use palette::{FromColor, IntoColor};
+use image::{DynamicImage, GenericImageView};
+use palette::blend::{Blend, Compose};
+use palette::IntoColor;
+use palette::{Lab, LinSrgba, Srgb};
 use std::cmp::{max, min};
 
 #[cfg(feature = "enable_wasm")]
@@ -216,59 +217,6 @@ pub fn replace_background(
     }
     let raw_pixels = img.into_bytes();
     photon_image.raw_pixels = raw_pixels;
-}
-
-#[cfg_attr(feature = "enable_wasm", wasm_bindgen)]
-pub fn create_gradient(width: u32, height: u32) -> PhotonImage {
-    let mut image = RgbaImage::new(width, height);
-
-    // Create a gradient.
-    let grad1 = Gradient::new(vec![
-        LinSrgba::new(1.0, 0.1, 0.1, 1.0),
-        LinSrgba::new(0.1, 0.1, 1.0, 1.0),
-        LinSrgba::new(0.1, 1.0, 0.1, 1.0),
-    ]);
-
-    let _grad3 = Gradient::new(vec![
-        Lch::from_color(LinSrgba::new(1.0, 0.1, 0.1, 1.0)),
-        Lch::from_color(LinSrgba::new(0.1, 0.1, 1.0, 1.0)),
-        Lch::from_color(LinSrgba::new(0.1, 1.0, 0.1, 1.0)),
-    ]);
-
-    for (i, c1) in grad1.take(width as usize).enumerate() {
-        let c1: Srgba<f32> = Srgba::from_linear(c1).into_format();
-        {
-            let mut sub_image = image.sub_image(i as u32, 0, 1, height);
-            for (x, y) in ImageIterator::with_dimension(&sub_image.dimensions()) {
-                let components = c1.into_components();
-                sub_image.put_pixel(
-                    x,
-                    y,
-                    image::Rgba([
-                        (components.0 * 255.0) as u8,
-                        (components.1 * 255.0) as u8,
-                        (components.2 * 255.0) as u8,
-                        255,
-                    ]),
-                );
-            }
-        }
-    }
-    let rgba_img = ImageRgba8(image);
-    let raw_pixels = rgba_img.into_bytes();
-    PhotonImage {
-        raw_pixels,
-        width,
-        height,
-    }
-}
-
-/// Apply a gradient to an image.
-#[cfg_attr(feature = "enable_wasm", wasm_bindgen)]
-pub fn apply_gradient(image: &mut PhotonImage) {
-    let gradient = create_gradient(image.width, image.height);
-
-    blend(image, &gradient, "overlay");
 }
 
 /// Build a simple horizontal gradient.

@@ -44,7 +44,7 @@ pub fn add_noise_rand(photon_image: &mut PhotonImage) {
 
     for (x, y) in ImageIterator::with_dimension(&img.dimensions()) {
         #[cfg(not(all(target_arch = "wasm64", not(target_os = "wasi"))))]
-        let offset = rng.gen_range(0, 150);
+        let offset = rng.gen_range(0..150);
 
         #[cfg(all(target_arch = "wasm64", not(target_os = "wasi")))]
         let offset = (random() * 150.0) as u8;

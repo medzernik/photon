@@ -39,7 +39,8 @@
 //! ### Live Demo
 //! View the [official demo of WASM in action](https://silvia-odwyer.github.io/photon).
 
-use base64::{decode, encode};
+use base64::{engine::general_purpose, Engine as _};
+
 use image::DynamicImage::ImageRgba8;
 use image::GenericImage;
 use serde::{Deserialize, Serialize};
@@ -180,9 +181,9 @@ impl PhotonImage {
         img = ImageRgba8(img.to_rgba8());
 
         let mut buffer = vec![];
-        img.write_to(&mut Cursor::new(&mut buffer), image::ImageOutputFormat::Png)
+        img.write_to(&mut Cursor::new(&mut buffer), image::ImageFormat::Png)
             .unwrap();
-        let base64 = encode(&buffer);
+        let base64 = general_purpose::STANDARD.encode(&buffer);
 
         let res_base64 = format!("data:image/png;base64,{}", base64.replace("\r\n", ""));
 
@@ -194,17 +195,18 @@ impl PhotonImage {
         let mut img = helpers::dyn_image_from_raw(self);
         img = ImageRgba8(img.to_rgba8());
         let mut buffer = vec![];
-        img.write_to(&mut Cursor::new(&mut buffer), image::ImageOutputFormat::Png)
+        img.write_to(&mut Cursor::new(&mut buffer), image::ImageFormat::Png)
             .unwrap();
         buffer
     }
 
     /// Convert the PhotonImage to raw bytes. Returns a JPEG.
-    pub fn get_bytes_jpeg(&self, quality: u8) -> Vec<u8> {
+    pub fn get_bytes_jpeg(&self, _quality: u8) -> Vec<u8> {
         let mut img = helpers::dyn_image_from_raw(self);
         img = ImageRgba8(img.to_rgba8());
         let mut buffer = vec![];
-        let out_format = image::ImageOutputFormat::Jpeg(quality);
+        let out_format = image::ImageFormat::Jpeg;
+
         img.write_to(&mut Cursor::new(&mut buffer), out_format)
             .unwrap();
         buffer
@@ -215,7 +217,7 @@ impl PhotonImage {
         let mut img = helpers::dyn_image_from_raw(self);
         img = ImageRgba8(img.to_rgba8());
         let mut buffer = vec![];
-        let out_format = image::ImageOutputFormat::WebP;
+        let out_format = image::ImageFormat::WebP;
         img.write_to(&mut Cursor::new(&mut buffer), out_format)
             .unwrap();
         buffer
@@ -516,7 +518,7 @@ pub fn base64_to_image(base64: &str) -> PhotonImage {
 /// Convert a base64 string to a Vec of u8s.
 #[cfg_attr(feature = "enable_wasm", wasm_bindgen)]
 pub fn base64_to_vec(base64: &str) -> Vec<u8> {
-    decode(base64).unwrap()
+    general_purpose::STANDARD.decode(base64).unwrap()
 }
 
 /// Convert a PhotonImage to JS-compatible ImageData.

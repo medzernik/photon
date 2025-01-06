@@ -4,11 +4,11 @@
 
 use crate::iter::ImageIterator;
 use crate::{helpers, PhotonImage};
+use ab_glyph::PxScale;
 use image::{DynamicImage, Rgba};
 use imageproc::distance_transform::Norm;
 use imageproc::drawing::draw_text_mut;
 use imageproc::morphology::dilate_mut;
-use rusttype::{Font, Scale};
 
 #[cfg(feature = "enable_wasm")]
 use wasm_bindgen::prelude::*;
@@ -41,10 +41,11 @@ pub fn draw_text_with_border(photon_img: &mut PhotonImage, text: &str, x: i32, y
     let mut image2: DynamicImage =
         DynamicImage::new_luma8(image.width(), image.height());
 
-    let font = Vec::from(include_bytes!("../fonts/Roboto-Regular.ttf") as &[u8]);
-    let font = Font::try_from_bytes(&font).unwrap();
+    let font: &[u8] = &Vec::from(include_bytes!("../fonts/Roboto-Regular.ttf") as &[u8]);
+    let font = ab_glyph::FontRef::try_from_slice(font).unwrap();
+
     let height = 90f32;
-    let scale = Scale {
+    let scale = PxScale {
         x: height * 1.0,
         y: height,
     };
@@ -111,10 +112,10 @@ pub fn draw_text(photon_img: &mut PhotonImage, text: &str, x: i32, y: i32) {
     let mut image2: DynamicImage =
         DynamicImage::new_luma8(image.width(), image.height());
 
-    let font = Vec::from(include_bytes!("../fonts/Roboto-Regular.ttf") as &[u8]);
-    let font = Font::try_from_bytes(&font).unwrap();
+    let font: &[u8] = &Vec::from(include_bytes!("../fonts/Roboto-Regular.ttf") as &[u8]);
+    let font = ab_glyph::FontRef::try_from_slice(font).unwrap();
     let height = 90f32;
-    let scale = Scale {
+    let scale = PxScale {
         x: height * 1.0,
         y: height,
     };
