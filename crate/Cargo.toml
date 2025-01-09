@@ -1,5 +1,8 @@
 [package]
-authors = ["Silvia O'Dwyer <silviaodwyerdev@gmail.com>", "David Manca <manca@spravazeleznic.cz"]
+authors = [
+    "Silvia O'Dwyer <silviaodwyerdev@gmail.com>",
+    "David Manca <manca@spravazeleznic.cz",
+]
 categories = ["wasm", "multimedia"]
 description = "High-performance image processing library for native use and the web"
 license = "Apache-2.0"
@@ -10,24 +13,24 @@ version = "0.3.3"
 edition = "2021"
 exclude = ["pkg/*", "examples/input_images/*"]
 homepage = "https://silvia-odwyer.github.io/photon/"
-resolver= "2"
+resolver = "2"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 image = { version = "0.25", default-features = false, features = [
-  "gif",
-  "jpeg",
-  "ico",
-  "png",
-  "pnm",
-  "tga",
-  "tiff",
-  "webp",
-  "bmp",
-  "hdr",
-  "dds",
+    "gif",
+    "jpeg",
+    "ico",
+    "png",
+    "pnm",
+    "tga",
+    "tiff",
+    "webp",
+    "bmp",
+    "hdr",
+    "dds",
 ] }
 palette = "0.7"
 rand = "0.8"
@@ -53,7 +56,7 @@ console_error_panic_hook = { version = "0.1", optional = true }
 # compared to the default allocator's ~10K. It is slower than the default
 # allocator, however.
 wee_alloc = { version = "0.4", optional = true }
-ab_glyph = "0.2.29"
+ab_glyph = "0.2"
 
 [dev-dependencies]
 time = "0.3"
@@ -69,28 +72,28 @@ wasm-opt = ["-O3", "--enable-mutable-globals"]
 [dependencies.web-sys]
 version = "0.3"
 features = [
-  "Document",
-  "Element",
-  "HtmlElement",
-  "Node",
-  "Window",
-  "CanvasRenderingContext2d",
-  "ImageData",
-  "HtmlCanvasElement",
-  "HtmlImageElement",
-  "console",
-  'CssStyleDeclaration',
-  'EventTarget',
-  "Blob",
+    "Document",
+    "Element",
+    "HtmlElement",
+    "Node",
+    "Window",
+    "CanvasRenderingContext2d",
+    "ImageData",
+    "HtmlCanvasElement",
+    "HtmlImageElement",
+    "console",
+    'CssStyleDeclaration',
+    'EventTarget',
+    "Blob",
 ]
 optional = true
 
 [features]
 default = ["enable_wasm"]
 enable_wasm = [
-  "wasm-bindgen",
-  "web-sys",
-  "js-sys",
-  "node-sys",
-  "console_error_panic_hook",
+    "wasm-bindgen",
+    "web-sys",
+    "js-sys",
+    "node-sys",
+    "console_error_panic_hook",
 ]
