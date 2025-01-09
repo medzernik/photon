@@ -1,14 +1,16 @@
 //! Channel manipulation.
 
 use image::Pixel as OtherPixel;
+use palette::Desaturate;
+use palette::ShiftHue;
 
 use image::{GenericImage, GenericImageView};
 
 use crate::helpers;
 use crate::iter::ImageIterator;
 use crate::{PhotonImage, Rgb};
+use palette::{Darken, Lab, Lch, Lighten, Saturate, Srgb, Srgba};
 use palette::{FromColor, IntoColor};
-use palette::{Hue, Lab, Lch, Saturate, Shade, Srgb, Srgba};
 
 #[cfg(feature = "enable_wasm")]
 use wasm_bindgen::prelude::*;
@@ -431,16 +433,14 @@ pub fn selective_hue_rotate(
         let sim = color_sim(lab, px_lab);
         if sim > 0 && sim < 40 {
             let px_data = img.get_pixel(x, y).channels();
-            let color = Srgba::new(
-                px_data[0] as f32,
-                px_data[1] as f32,
-                px_data[2] as f32,
-                255.0,
+            let color = Srgb::new(
+                px_data[0] as f32 / 255.0,
+                px_data[1] as f32 / 255.0,
+                px_data[2] as f32 / 255.0,
             );
             let hue_rotated_color = Lch::from_color(color).shift_hue(degrees);
 
-            let final_color: Srgba =
-                Srgba::from_linear(hue_rotated_color.into_color()).into_format();
+            let final_color: Srgb = Srgb::from_color(hue_rotated_color);
 
             let components = final_color.into_components();
 
@@ -671,10 +671,12 @@ fn selective(
         let sim = color_sim(lab, px_lab);
         if sim > 0 && sim < 40 {
             let px_data = img.get_pixel(x, y).channels();
-            let lch_colour: Lch = Srgb::new(px_data[0], px_data[1], px_data[2])
-                .into_format()
-                .into_linear()
-                .into_color();
+            let lch_colour: Lch = Srgb::new(
+                px_data[0] as f32 / 255.0,
+                px_data[1] as f32 / 255.0,
+                px_data[2] as f32 / 255.0,
+            )
+            .into_color();
 
             let new_color = match mode {
                 // Match a single value

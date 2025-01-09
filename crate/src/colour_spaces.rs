@@ -1,11 +1,12 @@
 //! Image manipulation effects in HSL, HSLuv, LCh and HSV.
-
 use crate::iter::ImageIterator;
 use crate::{helpers, PhotonImage, Rgb};
 use image::GenericImageView;
 use image::Pixel as ImagePixel;
-use palette::{FromColor, IntoColor};
-use palette::{Hsla, Hsluva, Hsva, Hue, Lcha, Saturate, Shade, Srgba};
+use palette::{
+    Darken, Desaturate, FromColor, Hsla, Hsluva, Hsva, IntoColor, Lcha, Lighten,
+    Saturate, ShiftHue, Srgba,
+};
 
 #[cfg(feature = "enable_wasm")]
 use wasm_bindgen::prelude::*;
@@ -115,8 +116,7 @@ pub fn hsluv(photon_image: &mut PhotonImage, mode: &str, amt: f32) {
             "shift_hue" => hsluv_color.shift_hue(amt * 360.0),
             _ => hsluv_color.saturate(amt),
         };
-        let final_color: Srgba =
-            Srgba::from_linear(new_color.into_color()).into_format();
+        let final_color: Srgba<f32> = Srgba::from_linear(new_color.into_color());
 
         let components = final_color.into_components();
 
@@ -183,8 +183,7 @@ pub fn lch(photon_image: &mut PhotonImage, mode: &str, amt: f32) {
             "shift_hue" => lch_colour.shift_hue(amt * 360.0),
             _ => lch_colour.saturate(amt),
         };
-        let final_color: Srgba =
-            Srgba::from_linear(new_color.into_color()).into_format();
+        let final_color: Srgba<f32> = Srgba::from_linear(new_color.into_color());
 
         let components = final_color.into_components();
 
