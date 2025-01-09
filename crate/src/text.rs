@@ -4,7 +4,7 @@
 
 use crate::iter::ImageIterator;
 use crate::{helpers, PhotonImage};
-use ab_glyph::{PxScale, ScaleFont};
+use ab_glyph::PxScale;
 use image::{DynamicImage, Rgba};
 use imageproc::distance_transform::Norm;
 use imageproc::drawing::draw_text_mut;
