@@ -1,7 +1,7 @@
 [package]
 authors = [
     "Silvia O'Dwyer <silviaodwyerdev@gmail.com>",
-    "David Manca <manca@spravazeleznic.cz",
+    "David Manca <1900179+medzernik@users.noreply.github.com",
 ]
 categories = ["wasm", "multimedia"]
 description = "High-performance image processing library for native use and the web"
