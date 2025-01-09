@@ -13,10 +13,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Seam Carver
     let (w, h) = (img.get_width(), img.get_height());
     println!("original = w: {}, h: {}", w, h);
-    let angles = [60.0,  //   60.0 = q1:60.0
+    let angles = [
+        60.0,  //   60.0 = q1:60.0
         135.0, //  135.0 = q2:45.0
         562.5, //  517.5 = q3:22.5
-        -30.0];
+        -30.0,
+    ];
     let operations = angles.len();
     let mut results = Vec::new();
     for i in 0..operations {
