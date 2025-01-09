@@ -1766,6 +1766,41 @@ export function sobel_vertical(photon_image: PhotonImage): void;
  */
 export function sobel_global(photon_image: PhotonImage): void;
 /**
+ * ! [temp] Check if WASM is supported.
+ */
+export function run(): void;
+/**
+ * Get the ImageData from a 2D canvas context
+ */
+export function get_image_data(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): ImageData;
+/**
+ * Place a PhotonImage onto a 2D canvas.
+ */
+export function putImageData(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, new_image: PhotonImage): void;
+/**
+ * Convert a HTML5 Canvas Element to a PhotonImage.
+ *
+ * This converts the ImageData found in the canvas context to a PhotonImage,
+ * which can then have effects or filters applied to it.
+ */
+export function open_image(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): PhotonImage;
+/**
+ * Convert ImageData to a raw pixel vec of u8s.
+ */
+export function to_raw_pixels(imgdata: ImageData): Uint8Array;
+/**
+ * Convert a base64 string to a PhotonImage.
+ */
+export function base64_to_image(base64: string): PhotonImage;
+/**
+ * Convert a base64 string to a Vec of u8s.
+ */
+export function base64_to_vec(base64: string): Uint8Array;
+/**
+ * Convert a PhotonImage to JS-compatible ImageData.
+ */
+export function to_image_data(photon_image: PhotonImage): ImageData;
+/**
  * Crop an image.
  *
  * # Arguments
@@ -2657,41 +2692,6 @@ export function draw_text_with_border(photon_img: PhotonImage, text: string, x: 
  * ```
  */
 export function draw_text(photon_img: PhotonImage, text: string, x: number, y: number): void;
-/**
- * ! [temp] Check if WASM is supported.
- */
-export function run(): void;
-/**
- * Get the ImageData from a 2D canvas context
- */
-export function get_image_data(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): ImageData;
-/**
- * Place a PhotonImage onto a 2D canvas.
- */
-export function putImageData(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, new_image: PhotonImage): void;
-/**
- * Convert a HTML5 Canvas Element to a PhotonImage.
- *
- * This converts the ImageData found in the canvas context to a PhotonImage,
- * which can then have effects or filters applied to it.
- */
-export function open_image(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): PhotonImage;
-/**
- * Convert ImageData to a raw pixel vec of u8s.
- */
-export function to_raw_pixels(imgdata: ImageData): Uint8Array;
-/**
- * Convert a base64 string to a PhotonImage.
- */
-export function base64_to_image(base64: string): PhotonImage;
-/**
- * Convert a base64 string to a Vec of u8s.
- */
-export function base64_to_vec(base64: string): Uint8Array;
-/**
- * Convert a PhotonImage to JS-compatible ImageData.
- */
-export function to_image_data(photon_image: PhotonImage): ImageData;
 export enum SamplingFilter {
   Nearest = 1,
   Triangle = 2,
@@ -2748,7 +2748,7 @@ export class PhotonImage {
   /**
    * Convert the PhotonImage to raw bytes. Returns a JPEG.
    */
-  get_bytes_jpeg(quality: number): Uint8Array;
+  get_bytes_jpeg(_quality: number): Uint8Array;
   /**
    * Convert the PhotonImage to raw bytes. Returns a WEBP.
    */

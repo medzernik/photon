@@ -2542,6 +2542,113 @@ module.exports.sobel_global = function(photon_image) {
     wasm.sobel_global(photon_image.__wbg_ptr);
 };
 
+function getArrayU8FromWasm0(ptr, len) {
+    ptr = ptr >>> 0;
+    return getUint8ArrayMemory0().subarray(ptr / 1, ptr / 1 + len);
+}
+
+function takeFromExternrefTable0(idx) {
+    const value = wasm.__wbindgen_export_2.get(idx);
+    wasm.__externref_table_dealloc(idx);
+    return value;
+}
+/**
+ * ! [temp] Check if WASM is supported.
+ */
+module.exports.run = function() {
+    const ret = wasm.run();
+    if (ret[1]) {
+        throw takeFromExternrefTable0(ret[0]);
+    }
+};
+
+/**
+ * Get the ImageData from a 2D canvas context
+ * @param {HTMLCanvasElement} canvas
+ * @param {CanvasRenderingContext2D} ctx
+ * @returns {ImageData}
+ */
+module.exports.get_image_data = function(canvas, ctx) {
+    const ret = wasm.get_image_data(canvas, ctx);
+    return ret;
+};
+
+/**
+ * Place a PhotonImage onto a 2D canvas.
+ * @param {HTMLCanvasElement} canvas
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {PhotonImage} new_image
+ */
+module.exports.putImageData = function(canvas, ctx, new_image) {
+    _assertClass(new_image, PhotonImage);
+    var ptr0 = new_image.__destroy_into_raw();
+    wasm.putImageData(canvas, ctx, ptr0);
+};
+
+/**
+ * Convert a HTML5 Canvas Element to a PhotonImage.
+ *
+ * This converts the ImageData found in the canvas context to a PhotonImage,
+ * which can then have effects or filters applied to it.
+ * @param {HTMLCanvasElement} canvas
+ * @param {CanvasRenderingContext2D} ctx
+ * @returns {PhotonImage}
+ */
+module.exports.open_image = function(canvas, ctx) {
+    const ret = wasm.open_image(canvas, ctx);
+    return PhotonImage.__wrap(ret);
+};
+
+/**
+ * Convert ImageData to a raw pixel vec of u8s.
+ * @param {ImageData} imgdata
+ * @returns {Uint8Array}
+ */
+module.exports.to_raw_pixels = function(imgdata) {
+    const ret = wasm.to_raw_pixels(imgdata);
+    var v1 = getArrayU8FromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+    return v1;
+};
+
+/**
+ * Convert a base64 string to a PhotonImage.
+ * @param {string} base64
+ * @returns {PhotonImage}
+ */
+module.exports.base64_to_image = function(base64) {
+    const ptr0 = passStringToWasm0(base64, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.base64_to_image(ptr0, len0);
+    return PhotonImage.__wrap(ret);
+};
+
+/**
+ * Convert a base64 string to a Vec of u8s.
+ * @param {string} base64
+ * @returns {Uint8Array}
+ */
+module.exports.base64_to_vec = function(base64) {
+    const ptr0 = passStringToWasm0(base64, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.base64_to_vec(ptr0, len0);
+    var v2 = getArrayU8FromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+    return v2;
+};
+
+/**
+ * Convert a PhotonImage to JS-compatible ImageData.
+ * @param {PhotonImage} photon_image
+ * @returns {ImageData}
+ */
+module.exports.to_image_data = function(photon_image) {
+    _assertClass(photon_image, PhotonImage);
+    var ptr0 = photon_image.__destroy_into_raw();
+    const ret = wasm.to_image_data(ptr0);
+    return ret;
+};
+
 /**
  * Crop an image.
  *
@@ -3777,113 +3884,6 @@ module.exports.draw_text = function(photon_img, text, x, y) {
     wasm.draw_text(photon_img.__wbg_ptr, ptr0, len0, x, y);
 };
 
-function getArrayU8FromWasm0(ptr, len) {
-    ptr = ptr >>> 0;
-    return getUint8ArrayMemory0().subarray(ptr / 1, ptr / 1 + len);
-}
-
-function takeFromExternrefTable0(idx) {
-    const value = wasm.__wbindgen_export_2.get(idx);
-    wasm.__externref_table_dealloc(idx);
-    return value;
-}
-/**
- * ! [temp] Check if WASM is supported.
- */
-module.exports.run = function() {
-    const ret = wasm.run();
-    if (ret[1]) {
-        throw takeFromExternrefTable0(ret[0]);
-    }
-};
-
-/**
- * Get the ImageData from a 2D canvas context
- * @param {HTMLCanvasElement} canvas
- * @param {CanvasRenderingContext2D} ctx
- * @returns {ImageData}
- */
-module.exports.get_image_data = function(canvas, ctx) {
-    const ret = wasm.get_image_data(canvas, ctx);
-    return ret;
-};
-
-/**
- * Place a PhotonImage onto a 2D canvas.
- * @param {HTMLCanvasElement} canvas
- * @param {CanvasRenderingContext2D} ctx
- * @param {PhotonImage} new_image
- */
-module.exports.putImageData = function(canvas, ctx, new_image) {
-    _assertClass(new_image, PhotonImage);
-    var ptr0 = new_image.__destroy_into_raw();
-    wasm.putImageData(canvas, ctx, ptr0);
-};
-
-/**
- * Convert a HTML5 Canvas Element to a PhotonImage.
- *
- * This converts the ImageData found in the canvas context to a PhotonImage,
- * which can then have effects or filters applied to it.
- * @param {HTMLCanvasElement} canvas
- * @param {CanvasRenderingContext2D} ctx
- * @returns {PhotonImage}
- */
-module.exports.open_image = function(canvas, ctx) {
-    const ret = wasm.open_image(canvas, ctx);
-    return PhotonImage.__wrap(ret);
-};
-
-/**
- * Convert ImageData to a raw pixel vec of u8s.
- * @param {ImageData} imgdata
- * @returns {Uint8Array}
- */
-module.exports.to_raw_pixels = function(imgdata) {
-    const ret = wasm.to_raw_pixels(imgdata);
-    var v1 = getArrayU8FromWasm0(ret[0], ret[1]).slice();
-    wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
-    return v1;
-};
-
-/**
- * Convert a base64 string to a PhotonImage.
- * @param {string} base64
- * @returns {PhotonImage}
- */
-module.exports.base64_to_image = function(base64) {
-    const ptr0 = passStringToWasm0(base64, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.base64_to_image(ptr0, len0);
-    return PhotonImage.__wrap(ret);
-};
-
-/**
- * Convert a base64 string to a Vec of u8s.
- * @param {string} base64
- * @returns {Uint8Array}
- */
-module.exports.base64_to_vec = function(base64) {
-    const ptr0 = passStringToWasm0(base64, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.base64_to_vec(ptr0, len0);
-    var v2 = getArrayU8FromWasm0(ret[0], ret[1]).slice();
-    wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
-    return v2;
-};
-
-/**
- * Convert a PhotonImage to JS-compatible ImageData.
- * @param {PhotonImage} photon_image
- * @returns {ImageData}
- */
-module.exports.to_image_data = function(photon_image) {
-    _assertClass(photon_image, PhotonImage);
-    var ptr0 = photon_image.__destroy_into_raw();
-    const ret = wasm.to_image_data(ptr0);
-    return ret;
-};
-
 /**
  * @enum {1 | 2 | 3 | 4 | 5}
  */
@@ -4031,11 +4031,11 @@ class PhotonImage {
     }
     /**
      * Convert the PhotonImage to raw bytes. Returns a JPEG.
-     * @param {number} quality
+     * @param {number} _quality
      * @returns {Uint8Array}
      */
-    get_bytes_jpeg(quality) {
-        const ret = wasm.photonimage_get_bytes_jpeg(this.__wbg_ptr, quality);
+    get_bytes_jpeg(_quality) {
+        const ret = wasm.photonimage_get_bytes_jpeg(this.__wbg_ptr, _quality);
         var v1 = getArrayU8FromWasm0(ret[0], ret[1]).slice();
         wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
         return v1;
