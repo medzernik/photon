@@ -518,7 +518,7 @@ pub fn base64_to_image(base64: &str) -> PhotonImage {
 /// Convert a base64 string to a Vec of u8s.
 #[cfg_attr(feature = "enable_wasm", wasm_bindgen)]
 pub fn base64_to_vec(base64: &str) -> Vec<u8> {
-(??)    general_purpose::STANDARD_NO_PAD.decode(base64).unwrap()
+    general_purpose::STANDARD.decode(base64).unwrap()
 }
 
 /// Convert a PhotonImage to JS-compatible ImageData.
