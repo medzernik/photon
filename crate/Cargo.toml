@@ -13,7 +13,7 @@ version = "0.3.3"
 edition = "2021"
 exclude = ["pkg/*", "examples/input_images/*"]
 homepage = "https://silvia-odwyer.github.io/photon/"
-resolver = "2"
+resolver = "3"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
