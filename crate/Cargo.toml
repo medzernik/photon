@@ -13,6 +13,7 @@ version = "0.3.3"
 edition = "2021"
 exclude = ["pkg/*", "examples/input_images/*"]
 homepage = "https://silvia-odwyer.github.io/photon/"
+publish = false
 resolver = "3"
 
 [lib]
